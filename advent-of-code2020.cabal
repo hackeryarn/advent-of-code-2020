@@ -50,7 +50,8 @@ extra-source-files:  CHANGELOG.md
 library
   -- Modules exported by the library.
   exposed-modules:     MyLib,
-                       Day1
+                       Day1,
+                       Day2
 
   -- Modules included in this library but not exported.
   -- other-modules:
@@ -59,7 +60,9 @@ library
   -- other-extensions:
 
   -- Other library packages from which modules are imported.
-  build-depends:       base ^>=4.14.1.0
+  build-depends:       attoparsec,
+                       base ^>=4.14.1.0,
+                       bytestring >= 0.10.10.0
 
   -- Directories containing source files.
   hs-source-dirs:      src
@@ -101,7 +104,12 @@ test-suite advent-of-code2020-test
   -- The entrypoint to the test suite.
   main-is:             MyLibTest.hs
 
+  -- Modules included in this test suit but not exported.
+  other-modules:       Day1Test,
+                       Day2Test
+
   -- Test dependencies.
   build-depends:       base ^>=4.14.1.0,
                        hspec,
+                       bytestring >= 0.10.10.0,
                        advent-of-code2020
