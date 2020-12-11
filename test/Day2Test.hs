@@ -9,5 +9,10 @@ day2 = do
   describe "countCorrectPasswords" $ do
     let sample = "1-3 a: abcde\n1-3 b: cdefg\n2-9 c: ccccccccc"
     it "finds the correct number of passwords"
-      $          countCorrectPasswords (BS.pack sample)
+      $          (countCorrectPasswordsBy checkPasswordInfo) (BS.pack sample)
       `shouldBe` 2
+  describe "countCorrectPasswords'" $ do
+    let sample = "1-3 a: abcde\n1-3 b: cdefg\n2-9 c: ccccccccc"
+    it "finds the correct number of passwords"
+      $          (countCorrectPasswordsBy checkPasswordInfo') (BS.pack sample)
+      `shouldBe` 1

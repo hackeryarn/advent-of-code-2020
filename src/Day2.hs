@@ -37,12 +37,12 @@ parsePasswordInfo = do
   passwordInfoPassword <- takeTill (== '\n')
   return PasswordInfo { .. }
 
-countCorrectPasswords :: BS.ByteString -> Int
-countCorrectPasswords input =
+countCorrectPasswordsBy :: (PasswordInfo -> Bool) -> BS.ByteString -> Int
+countCorrectPasswordsBy check input =
   let infos = parseOnly (parsePasswordInfo `sepBy` endOfLine) input
   in  case infos of
         (Left  _ ) -> 0
-        (Right is) -> length $ filter checkPasswordInfo is
+        (Right is) -> length $ filter check is
 
 checkPasswordInfo :: PasswordInfo -> Bool
 checkPasswordInfo PasswordInfo {..} =
@@ -50,3 +50,10 @@ checkPasswordInfo PasswordInfo {..} =
         length . filter (== passwordInfoChar) . BS.unpack $ passwordInfoPassword
       Range {..} = passwordInfoRange
   in  rangeLow <= occurances && occurances <= rangeHigh
+
+checkPasswordInfo' :: PasswordInfo -> Bool
+checkPasswordInfo' PasswordInfo {..} =
+  let Range {..} = passwordInfoRange
+      lowMatch   = passwordInfoPassword `BS.index` (rangeLow - 1)
+      highMatch  = passwordInfoPassword `BS.index` (rangeHigh - 1)
+  in  (lowMatch == passwordInfoChar) /= (highMatch == passwordInfoChar)
