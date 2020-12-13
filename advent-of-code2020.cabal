@@ -52,7 +52,8 @@ library
   exposed-modules:     MyLib,
                        Day1,
                        Day2,
-                       Day3
+                       Day3,
+                       Day4
 
   -- Modules included in this library but not exported.
   -- other-modules:
@@ -64,7 +65,9 @@ library
   build-depends:       attoparsec,
                        base ^>=4.14.1.0,
                        bytestring >= 0.10.10.0,
-                       relude
+                       parsec >= 3.1.14.0,
+                       relude,
+                       text >= 1.2.3.2
 
   -- Directories containing source files.
   hs-source-dirs:      src
@@ -109,10 +112,13 @@ test-suite advent-of-code2020-test
   -- Modules included in this test suit but not exported.
   other-modules:       Day1Test,
                        Day2Test,
-                       Day3Test
+                       Day3Test,
+                       Day4Test
 
   -- Test dependencies.
   build-depends:       base ^>=4.14.1.0,
                        hspec,
                        bytestring >= 0.10.10.0,
+                       text >= 1.2.3.2,
+                       parsec >= 3.1.14.0,
                        advent-of-code2020

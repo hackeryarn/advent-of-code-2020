@@ -23,4 +23,4 @@ day3 :: Spec
 day3 = do
   describe "treesHit" $ do
     let path = Path (MovesRight 3) (MovesDown 1)
-    it "" $ treesHit path sample `shouldBe` 7
+    it "counts all trees hit" $ treesHit path sample `shouldBe` 7
