@@ -2,13 +2,4 @@
 
 with pkgs;
 
-mkShell {
-  buildInputs = [
-    ghc
-    cabal-install
-    haskellPackages.brittany
-    haskellPackages.hlint
-    haskellPackages.hoogle
-    zlib
-  ];
-}
+mkShell { buildInputs = [ jdk leiningen clj-kondo ]; }

@@ -1,5 +1,5 @@
 {
-  description = "Development environment for clojure";
+  description = "Development environment for chapter15";
 
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
