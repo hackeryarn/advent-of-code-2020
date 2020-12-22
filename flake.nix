@@ -7,7 +7,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       let pkgs = import nixpkgs { inherit system; };
       in {
-        name = "chapter15";
+        name = "aoc";
         devShell = import ./shell.nix { inherit pkgs; };
       });
 }
